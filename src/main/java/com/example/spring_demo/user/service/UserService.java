@@ -27,7 +27,11 @@ public class UserService {
                 .get() + 1;
     }
     public void addUser(String email, String password){
-        UserRepository.users.add(new User(incrementMaxUserId(), email, password));
+//        UserRepository.users.add(new User(incrementMaxUserId(), email, password));
+//    xxx
+//    xxx
+//    xxx
+//    xxx
     }
     public boolean deleteUserById(int userId){
         return UserRepository.users
