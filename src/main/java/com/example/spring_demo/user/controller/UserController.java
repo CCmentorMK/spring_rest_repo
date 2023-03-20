@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/user")
+@RequestMapping("/users")
 @RestController     // klasa specjalna do mapowania żądań protokołu http
 public class UserController {
 
@@ -34,5 +34,11 @@ public class UserController {
     ){
          return userService.deleteUserById(userId);
     }
-
+    @PutMapping("/update_password/{email}")
+    public void resetUserPasswordByEmail(
+            @PathVariable("email") String email,
+            @RequestBody String password
+    ){
+        userService.resetUserPasswordByEmail(email, password);
+    }
 }
