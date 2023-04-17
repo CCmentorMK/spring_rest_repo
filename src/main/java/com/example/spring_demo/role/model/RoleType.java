@@ -1,4 +1,4 @@
-package com.example.spring_demo.role;
+package com.example.spring_demo.role.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

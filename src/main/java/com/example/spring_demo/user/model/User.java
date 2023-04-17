@@ -1,19 +1,13 @@
 package com.example.spring_demo.user.model;
 
-import com.example.spring_demo.post.Post;
-import com.example.spring_demo.role.Role;
+import com.example.spring_demo.role.model.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity

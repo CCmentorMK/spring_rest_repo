@@ -1,25 +1,26 @@
 package com.example.spring_demo.user.service;
 
 
+import com.example.spring_demo.role.model.RoleType;
+import com.example.spring_demo.role.repository.RoleRepository;
 import com.example.spring_demo.user.model.User;
 import com.example.spring_demo.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service        // klasa specjalna dostarczająca logikę biznesową
 public class UserService {
 
     private UserRepository userRepository;
+    private RoleRepository roleRepository;
     @Autowired
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     public List<User> getUsers(){
@@ -27,7 +28,10 @@ public class UserService {
     }
 
     public void addUser(String email, String password){
-        userRepository.save(new User(email,password));                                  // INSERT INTO users VALUES (?,?,?,...);
+        User user = new User(email,password);
+        // how to add role to user???
+        user.setRoles(new HashSet<>(Arrays.asList(roleRepository.findFirstByRoleTypeJPQL(RoleType.USER).get())));
+        userRepository.save(user);                                  // INSERT INTO users VALUES (?,?,?,...);
     }
     public Optional<User> getUserById(int userId){                                      // SELECT * FROM users WHERE user_id = ?
         return userRepository.findById(userId);
